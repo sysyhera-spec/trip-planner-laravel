@@ -1,6 +1,6 @@
 # Trip Planner
 
-Application web de planification de voyages développée avec Laravel, dans le cadre du cours de Programmation Web (Master 2 MIASHS – Université Grenoble Alpes, 2025-2026).
+Application web de planification de voyages développée avec Laravel, dans le cadre du cours de Programmation Web Server (Master 2 MIASHS – Université Grenoble Alpes, 2025-2026).
 
 ## Description
 
