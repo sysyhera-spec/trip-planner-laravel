@@ -78,6 +78,12 @@ composer run dev
 
 L'application est accessible sur : http://localhost:8000
 
+## Authentification
+
+L'espace admin est protégé par authentification. Après `composer run setup`, un utilisateur de test est disponible :
+- **Email** : test@example.com
+- **Mot de passe** : testtest
+
 ## Auteurs
 
 Projet réalisé en groupe dans le cadre du cours de Programmation Web – Master 2 MIASHS DCISS, UGA.

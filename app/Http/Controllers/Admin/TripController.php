@@ -29,9 +29,12 @@ class TripController extends Controller
             'people_count' => 'required|integer|min:1',
         ]);
 
-        Trip::create($request->only(['title', 'description', 'starts_at', 'ends_at', 'people_count']));
+        Trip::create([
+            ...$request->only(['title', 'description', 'starts_at', 'ends_at', 'people_count']),
+            'user_id' => auth()->user()->id,
+        ]);
 
-        return redirect()->route('trips.index')->with('success', 'Voyage créé avec succès !');
+        return redirect()->route('admin.trips.index')->with('success', 'Voyage créé avec succès !');
     }
 
     public function show(Trip $trip)
@@ -56,12 +59,12 @@ class TripController extends Controller
 
         $trip->update($request->only(['title', 'description', 'starts_at', 'ends_at', 'people_count']));
 
-        return redirect()->route('trips.index')->with('success', 'Voyage mis à jour !');
+        return redirect()->route('admin.trips.index')->with('success', 'Voyage mis à jour !');
     }
 
     public function destroy(Trip $trip)
     {
         $trip->delete();
-        return redirect()->route('trips.index')->with('success', 'Voyage supprimé !');
+        return redirect()->route('admin.trips.index')->with('success', 'Voyage supprimé !');
     }
 }
