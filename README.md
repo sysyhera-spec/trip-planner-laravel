@@ -52,12 +52,31 @@ routes/web.php                    # Définition des routes
 ## Installation
 
 ```bash
-git clone <url-du-repo>
-cd trip-planner
+git clone https://github.com/sysyhera-spec/trip-planner-laravel.git
+cd trip-planner-laravel
 
-composer install
+composer run setup
+```
+
+Si la commande `setup` n'est pas disponible, tu peux lancer manuellement :
+
+```bash
 cp .env.example .env
+composer install
+npm install && npm run build
 php artisan key:generate
+touch database/database.sqlite
+php artisan migrate
+php artisan db:seed
+```
+
+Lancer le serveur :
+
+```bash
+composer run dev
+```
+
+L'application est accessible sur : http://localhost:8000
 
 # Configurer la base de données dans .env, puis :
 php artisan migrate --seed
