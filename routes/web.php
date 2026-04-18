@@ -14,4 +14,4 @@ Route::get('/trips/{trip}', [TripController::class, 'show'])->name('trips.show')
 Route::get('/contact', [ContactController::class, 'index']);
 Route::post('/contact', [ContactController::class, 'store']);
 
-Route::resource('/admin/trips', AdminTripController::class);
+Route::resource('/admin/trips', AdminTripController::class)->names('admin.trips');
