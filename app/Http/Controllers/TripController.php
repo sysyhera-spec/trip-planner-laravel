@@ -9,8 +9,8 @@ class TripController extends Controller
 {
     public function index()
     {
-        $trips = Trip::orderBy('starts_at', 'desc')->take(3)->get();    
-        return view('trips', ['trips' => $trips]);
+        $trips = Trip::orderBy('starts_at', 'desc')->get();    
+        return view('trips.index', ['trips' => $trips]);
     }
 
      // Page /trips/{id} : détail d’un voyage + ses destinations
