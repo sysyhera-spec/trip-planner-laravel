@@ -5,11 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="@yield('meta_description', 'Trip Planner - application de planification de voyages')">
-
-    {{--
-      Template pédagogique : styles via CDN (Bulma / Font Awesome) pour éviter de rajouter de la configuration front
-      (npm, Vite, Tailwind…) et rester focalisé sur Laravel / Blade / Eloquent.
-    --}}
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg stroke='%23fff' stroke-width='8'%3E%3Cpath d='M58 12 8 33l18 7 7 16 7-20 18-24z'/%3E%3Cpath d='M26 40 58 12'/%3E%3Cpath d='M8 33l18 7 7 16'/%3E%3C/g%3E%3Cg stroke='%23D33682' stroke-width='4'%3E%3Cpath d='M58 12 8 33l18 7 7 16 7-20 18-24z'/%3E%3Cpath d='M26 40 58 12'/%3E%3Cpath d='M8 33l18 7 7 16'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E" />
@@ -42,7 +37,6 @@
           </div>
 
           <div class="navbar-end">
-            {{-- Optionnel: barre de recherche sur la page /trips --}}
             <div class="navbar-item">
               <form method="GET" action="/trips">
                 <div class="field has-addons">
@@ -58,21 +52,27 @@
               </form>
             </div>
 
-            {{-- Optionnel: liens auth (si Breeze installé) --}}
-            {{--
             @auth
-              <div class="navbar-item">Bonjour {{ auth()->user()->name }}</div>
+              <div class="navbar-item">
+                <span class="has-text-grey">Bonjour {{ auth()->user()->name }}</span>
+              </div>
+              <div class="navbar-item">
+                <a href="{{ route('admin.trips.index') }}" class="button is-warning is-light mr-2">
+                  <span class="icon"><i class="fa-solid fa-gear"></i></span>
+                  <span>Admin</span>
+                </a>
+              </div>
               <div class="navbar-item">
                 <form method="POST" action="{{ route('logout') }}">
                   @csrf
-                  <button class="button is-light" type="submit">Logout</button>
+                  <button class="button is-light" type="submit">Déconnexion</button>
                 </form>
               </div>
             @else
-              <a class="navbar-item" href="{{ route('login') }}">Login</a>
-              <a class="navbar-item" href="{{ route('register') }}">Register</a>
+              <div class="navbar-item">
+                <a href="{{ route('login') }}" class="button is-light">Connexion</a>
+              </div>
             @endauth
-            --}}
           </div>
         </div>
       </div>
@@ -99,35 +99,6 @@
         @endif
 
         @yield('content')
-
-        {{-- Exemple de layout pour 3 voyages --}}
-        {{--
-
-        <div class="columns is-multiline">
-        <div class="column is-4 mb-5">
-        <span><small class="has-text-grey-dark">12 mar 2026 — 18 mar 2026</small></span>
-        <h2 class="mt-2 mb-2 is-size-3 is-size-4-mobile has-text-weight-bold">Lisbonne</h2>
-        <p class="subtitle has-text-grey">6 jours / 2 personnes</p>
-        <p class="subtitle has-text-grey">Budget estimé : 750€</p>
-        <a href="#">Voir le détail</a>
-        </div>
-        <div class="column is-4 mb-5">
-        <span><small class="has-text-grey-dark">02 avr 2026 — 10 avr 2026</small></span>
-        <h2 class="mt-2 mb-2 is-size-3 is-size-4-mobile has-text-weight-bold">Tokyo</h2>
-        <p class="subtitle has-text-grey">9 jours / 1 personne</p>
-        <p class="subtitle has-text-grey">Budget estimé : 2200€</p>
-        <a href="#">Voir le détail</a>
-        </div>
-        <div class="column is-4 mb-5">
-        <span><small class="has-text-grey-dark">15 mai 2026 — 22 mai 2026</small></span>
-        <h2 class="mt-2 mb-2 is-size-3 is-size-4-mobile has-text-weight-bold">Reykjavik</h2>
-        <p class="subtitle has-text-grey">8 jours / 4 personnes</p>
-        <p class="subtitle has-text-grey">Budget estimé : 3400€</p>
-        <a href="#">Voir le détail</a>
-        </div>
-        </div>
-
-        --}}
       </div>
     </section>
 
@@ -140,7 +111,6 @@
     </footer>
 
     <script>
-      // Burger menu Bulma
       document.addEventListener('DOMContentLoaded', () => {
         const burgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
         burgers.forEach((el) => {
