@@ -86,4 +86,5 @@ L'espace admin est protégé par authentification. Après `composer run setup`, 
 
 ## Auteurs
 
-Projet réalisé en groupe dans le cadre du cours de Programmation Web – Master 2 MIASHS DCISS, UGA.
+Projet initié en groupe dans le cadre du cours de Programmation Web – Master 2 MIASHS DCISS, UGA.
+Version publique retravaillée et améliorée individuellement.
