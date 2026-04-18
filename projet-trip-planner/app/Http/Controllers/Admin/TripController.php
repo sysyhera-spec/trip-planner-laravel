@@ -8,60 +8,60 @@ use App\Models\Trip;
 
 class TripController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-         $trips = Trip::all();
+        $trips = Trip::all();
         return view('admin.trips.index', compact('trips'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('admin.trips.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title'        => 'required|string|max:255',
+            'description'  => 'nullable|string',
+            'starts_at'    => 'required|date',
+            'ends_at'      => 'required|date|after:starts_at',
+            'people_count' => 'required|integer|min:1',
+        ]);
+
+        Trip::create($request->only(['title', 'description', 'starts_at', 'ends_at', 'people_count']));
+
+        return redirect()->route('trips.index')->with('success', 'Voyage créé avec succès !');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Trip $trip)
     {
         return view('admin.trips.show', compact('trip'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit(Trip $trip)
     {
-        //
+        return view('admin.trips.edit', compact('trip'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Trip $trip)
     {
-        //
+        $request->validate([
+            'title'        => 'required|string|max:255',
+            'description'  => 'nullable|string',
+            'starts_at'    => 'required|date',
+            'ends_at'      => 'required|date|after:starts_at',
+            'people_count' => 'required|integer|min:1',
+        ]);
+
+        $trip->update($request->only(['title', 'description', 'starts_at', 'ends_at', 'people_count']));
+
+        return redirect()->route('trips.index')->with('success', 'Voyage mis à jour !');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(Trip $trip)
     {
-        //
+        $trip->delete();
+        return redirect()->route('trips.index')->with('success', 'Voyage supprimé !');
     }
 }
