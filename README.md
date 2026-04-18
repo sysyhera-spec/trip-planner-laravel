@@ -46,7 +46,7 @@ routes/web.php                    # Définition des routes
 
 - PHP / Laravel
 - Blade (moteur de templates)
-- MySQL
+- SQLite
 - HTML5 / CSS3
 
 ## Installation
@@ -77,12 +77,6 @@ composer run dev
 ```
 
 L'application est accessible sur : http://localhost:8000
-
-# Configurer la base de données dans .env, puis :
-php artisan migrate --seed
-
-php artisan serve
-```
 
 ## Auteurs
 
